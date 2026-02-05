@@ -144,9 +144,9 @@ button:last-of-type:hover {
   backdrop-filter: blur(8px);
 }
 
-/* ======== CADASTRO COM FUNDO BOKEH ======== */
+/* ======== CADASTRO COM FUNDO ONDA AZUL ======== */
 .cadastro-box {
-  background-image: url("bokeh-roxo.jpg");
+  background-image: url("onda-azul.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -160,7 +160,6 @@ button:last-of-type:hover {
   max-width: 800px;
   backdrop-filter: blur(4px);
 }
-
 /* Títulos brancos dentro do fundo roxo */
 .cadastro-box h2 {
   color: white;
@@ -184,4 +183,5 @@ button:last-of-type:hover {
 /* Caixa de interação maior */
 textarea#interacao {
   height: 140px;
+
 }
