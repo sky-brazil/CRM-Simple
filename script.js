@@ -1,13 +1,13 @@
 // Proteção da página principal
-if (window.location.pathname.includes("index.html")) {
+if (window.location.pathname.includes("crm.html")) {
   if (localStorage.getItem("logged") !== "true") {
-    window.location.href = "login.html"
+    window.location.href = "index.html"
   }
 }
 
 function logout() {
   localStorage.removeItem("logged")
-  window.location.href = "login.html"
+  window.location.href = "index.html"
 }
 
 function login() {
@@ -16,7 +16,7 @@ function login() {
 
   if (u === "admin" && p === "123") {
     localStorage.setItem("logged", "true")
-    window.location.href = "index.html"
+    window.location.href = "crm.html"
   } else {
     alert("Usuário ou senha incorretos")
   }
@@ -109,4 +109,5 @@ function mostrarDetalhes(index) {
     "Interação: " + c.interacao + "\n" +
     "Data: " + c.data
   )
+
 }
