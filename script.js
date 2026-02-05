@@ -72,10 +72,15 @@ function buscar() {
   ul.innerHTML = ""
 
   lista
-    .filter(c =>
-      c.nome.toLowerCase().includes(termo) ||
-      c.telefone.includes(termo)
-    )
+    .filter(c => c.nome.toLowerCase().includes(termo))
+    .forEach((c, index) => {
+      const li = document.createElement("li")
+      li.textContent = c.nome
+      li.style.cursor = "pointer"
+      li.onclick = () => mostrarDetalhes(index)
+      ul.appendChild(li)
+    })
+}
     .forEach((c, index) => {
       const li = document.createElement("li")
       li.textContent = `${c.nome} - ${c.telefone}`
@@ -111,3 +116,4 @@ function mostrarDetalhes(index) {
   )
 
 }
+
