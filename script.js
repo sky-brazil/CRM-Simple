@@ -32,7 +32,7 @@ function limparCampos() {
   document.querySelectorAll("input, textarea").forEach(campo => campo.value = "")
 }
 
-// Função salvar (compatível com seu formulário atual)
+// Função salvar
 function salvar() {
   const cliente = {
     nome: document.getElementById("nome").value,
@@ -41,12 +41,7 @@ function salvar() {
     profissao: document.getElementById("profissao").value,
 
     cep: document.getElementById("cep").value,
-    frequencia: document.getElementById("frequencia").value,
-    quantidade: document.getElementById("quantidade").value,
     cidade: document.getElementById("cidade").value,
-    seguro: document.getElementById("seguro").value,
-    categoria: document.getElementById("categoria").value,
-    notas: document.getElementById("notas").value,
 
     produto: document.getElementById("produto").value,
     perfil: document.getElementById("perfil").value,
@@ -75,14 +70,6 @@ function buscar() {
     .filter(c => c.nome.toLowerCase().includes(termo))
     .forEach((c, index) => {
       const li = document.createElement("li")
-      li.textContent = c.nome
-      li.style.cursor = "pointer"
-      li.onclick = () => mostrarDetalhes(index)
-      ul.appendChild(li)
-    })
-}
-    .forEach((c, index) => {
-      const li = document.createElement("li")
       li.textContent = `${c.nome} - ${c.telefone}`
       li.style.cursor = "pointer"
       li.onclick = () => mostrarDetalhes(index)
@@ -90,7 +77,7 @@ function buscar() {
     })
 }
 
-// Mostrar detalhes do cliente
+// Mostrar detalhes
 function mostrarDetalhes(index) {
   const lista = JSON.parse(localStorage.getItem("clientes"))
   const c = lista[index]
@@ -100,20 +87,11 @@ function mostrarDetalhes(index) {
     "Telefone: " + c.telefone + "\n" +
     "Email: " + c.email + "\n" +
     "Profissão: " + c.profissao + "\n\n" +
-
     "CEP: " + c.cep + "\n" +
-    "Frequência: " + c.frequencia + "\n" +
-    "Quantidade: " + c.quantidade + "\n" +
-    "Cidade: " + c.cidade + "\n" +
-    "Seguro: " + c.seguro + "\n" +
-    "Categoria: " + c.categoria + "\n" +
-    "Notas: " + c.notas + "\n\n" +
-
+    "Cidade: " + c.cidade + "\n\n" +
     "Produto: " + c.produto + "\n" +
     "Perfil: " + c.perfil + "\n" +
     "Interação: " + c.interacao + "\n" +
     "Data: " + c.data
   )
-
 }
-
