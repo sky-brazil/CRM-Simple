@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>CRM Simples</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>CRM Simples</h1>
+    <button onclick="logout()">Sair</button>
+  </header>
+
+  <!-- FORMULÁRIO DE NOVO CLIENTE -->
+<section class="cadastro-box">
+  <h2>Cadastro</h2>
+
+  <input id="documento" placeholder="Documento">
+
+  <div class="linha">
+    <input id="nome" placeholder="Nome">
+    <input id="telefone" placeholder="Telefone" class="curto">
+  </div>
+
+  <div class="linha">
+    <input id="email" placeholder="Email" class="medio">
+    <input id="profissao" placeholder="Profissão" class="curto">
+  </div>
+
+  <div class="linha">
+    <input id="cep" placeholder="CEP" class="curto">
+    <input id="cidade" placeholder="Cidade" class="medio">
+  </div>
+
+  <h2>Fidelização</h2>
+
+  <div class="linha">
+    <input id="produto" placeholder="Produto" class="medio">
+    <input id="perfil" placeholder="Perfil" class="curto">
+  </div>
+
+  <textarea id="interacao" placeholder="Interação (detalhada)"></textarea>
+
+  <button onclick="salvar()">Salvar Cliente</button>
+  <button onclick="limparCampos()">Limpar Campos</button>
+</section>
+
+<section>
+  <h2>Buscar Cliente</h2>
+  <input id="search" placeholder="Nome ou telefone" onkeyup="buscar()">
+  <ul id="resultados"></ul>
+</section>
+
+  <script src="script.js"></script>
+</body>
+</html>

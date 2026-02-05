@@ -1,0 +1,187 @@
+/* ======== ESTILO GERAL ======== */
+body {
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  background: #FAFAF8;
+  margin: 0;
+  padding: 0;
+  color: #2F2F2F;
+  line-height: 1.6;
+}
+
+/* ======== CABEÇALHO ======== */
+header {
+  background: #FFFFFF;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #EDEDE9;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+header h1 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 22px;
+}
+
+header button {
+  background: #6CA6C1;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+header button:hover {
+  background: #2F4858;
+}
+
+/* ======== SEÇÕES ======== */
+section {
+  background: white;
+  margin: 30px auto;
+  padding: 30px;
+  width: 90%;
+  max-width: 800px;
+  border-radius: 12px;
+  border: 1px solid #EDEDE9;
+}
+
+/* Títulos */
+section h2 {
+  margin-top: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #2F2F2F;
+}
+
+/* ======== INPUTS ======== */
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #EDEDE9;
+  border-radius: 8px;
+  background: #FFFFFF;
+  transition: 0.2s;
+  font-size: 15px;
+}
+
+input:focus, textarea:focus {
+  border-color: #6CA6C1;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(108,166,193,0.25);
+}
+
+/* ======== BOTÕES ======== */
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  margin-right: 10px;
+  transition: 0.2s;
+}
+
+button:first-of-type {
+  background: #6CA6C1;
+  color: white;
+}
+
+button:first-of-type:hover {
+  background: #2F4858;
+}
+
+button:last-of-type {
+  background: #EDEDE9;
+  color: #2F2F2F;
+}
+
+button:last-of-type:hover {
+  background: #D6D6D0;
+}
+
+/* ======== LISTA DE RESULTADOS ======== */
+#resultados li {
+  background: #FFFFFF;
+  padding: 14px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #EDEDE9;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#resultados li:hover {
+  background: #C7EDE6;
+  border-color: #6CA6C1;
+}
+
+/* ======== LOGIN ======== */
+.login-bg {
+  background-image: url("onda-azul.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.login-box {
+  width: 350px;
+  margin: 120px auto;
+  padding: 30px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  text-align: center;
+  backdrop-filter: blur(8px);
+}
+
+/* ======== CADASTRO COM FUNDO BOKEH ======== */
+.cadastro-box {
+  background-image: url("bokeh-roxo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid #EDEDE9;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin: 30px auto;
+  width: 90%;
+  max-width: 800px;
+  backdrop-filter: blur(4px);
+}
+
+/* Títulos brancos dentro do fundo roxo */
+.cadastro-box h2 {
+  color: white;
+  text-shadow: 0 0 6px rgba(0,0,0,0.4);
+}
+
+/* ======== CAMPOS MENORES ======== */
+.linha {
+  display: flex;
+  gap: 10px;
+}
+
+.curto {
+  width: 35%;
+}
+
+.medio {
+  width: 60%;
+}
+
+/* Caixa de interação maior */
+textarea#interacao {
+  height: 140px;
+}
