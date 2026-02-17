@@ -1,90 +1,75 @@
-# Mini CRM Comercial (Portfolio + Upwork Ready)
+# Commercial Mini CRM (Portfolio + Client-Facing Ready)
 
-Projeto front-end de **CRM leve** para cadastro, consulta e acompanhamento de clientes.
+A lightweight CRM front-end built with HTML, CSS, and vanilla JavaScript.
+This project is designed to showcase both technical delivery and business-oriented thinking.
 
-Este repositorio foi estruturado para servir em dois contextos:
+## Why this project matters
 
-- **Portfolio tecnico** (GitHub, LinkedIn, entrevistas);
-- **Posicionamento comercial** para propostas no **Upwork**.
+This repository demonstrates the ability to:
 
-## Objetivo do projeto
+- build clean and responsive interfaces without frameworks;
+- translate sales workflow requirements into practical product flows;
+- ship readable, maintainable code for future expansion.
 
-Demonstrar capacidade de entregar:
+## Core features
 
-- interface limpa, moderna e responsiva;
-- fluxo de autenticacao simples para demonstracao;
-- logica de cadastro, busca e consulta de clientes;
-- codigo organizado para manutencao e evolucao.
+- Demo login flow with session state via `localStorage`;
+- Client registration with profile and interaction fields;
+- Multi-field client search (name, phone, email, document, profession);
+- Click-to-view detail panel for each client record;
+- Instant user feedback for save and clear actions.
 
-## Funcionalidades
-
-- Login de demonstracao com controle de sessao (`localStorage`);
-- Cadastro de clientes com dados de contato e perfil;
-- Registro de interacoes comerciais;
-- Busca por nome, telefone, e-mail, documento e profissao;
-- Lista de resultados com visualizacao de detalhes;
-- Feedback visual para acoes de salvar e limpar.
-
-## Melhorias aplicadas
-
-- Correcao de imagem de fundo com caminho adequado;
-- Correcao do bug de detalhes apos busca filtrada;
-- Inclusao do campo `documento` no salvamento;
-- Validacao minima de campos obrigatorios (nome e telefone);
-- Refinamento de UX/UI para aspecto mais profissional;
-- Estrutura JavaScript mais robusta e legivel.
-
-## Stack
+## Technical stack
 
 - HTML5
 - CSS3
-- JavaScript (Vanilla JS)
-- Persistencia local com `localStorage`
+- Vanilla JavaScript
+- Local persistence with `localStorage`
 
-## Como executar localmente
+## Run locally
 
-1. Clone este repositorio:
+1. Clone the repository:
    ```bash
    git clone <repo-url>
    ```
-2. Abra a pasta no VS Code.
-3. Execute com Live Server (ou abra `index.html` no navegador).
-4. Navegue por:
-   - `index.html` (login)
-   - `crm.html` (painel)
+2. Open the project folder in your preferred editor.
+3. Launch with Live Server, or open `index.html` directly in your browser.
+4. Navigate between:
+   - `index.html` (login page)
+   - `crm.html` (CRM dashboard)
 
-## Credenciais de demonstracao
+## Demo credentials
 
-- Usuario: `admin`
-- Senha: `123`
+- Username: `admin`
+- Password: `123`
 
-> Nota: a autenticacao atual e apenas para demonstracao.
+> Authentication is intentionally simplified for demonstration purposes.
 
-## Uso em Portfolio
+## Positioning for portfolio and hiring
 
-Este projeto e indicado para:
+This project works well as a proof of:
 
-- demonstrar dominio de front-end sem frameworks;
-- evidenciar capacidade de transformar regra de negocio em interface;
-- apresentar base para evolucao de um CRM completo.
+- front-end execution quality for internal business tools;
+- MVP thinking for custom CRM workflows;
+- practical UI/UX decisions tied to real client operations.
 
-## Uso em Propostas Upwork
+## Positioning for Upwork proposals
 
-Este projeto pode ser apresentado como exemplo para servicos de:
+Use this repository as a sample for:
 
-- desenvolvimento de CRM personalizado para pequenas operacoes;
-- modernizacao de sistemas internos simples;
-- criacao rapida de MVP comercial para validacao.
+- custom CRM interfaces for small and mid-sized operations;
+- sales workflow digitization and process simplification;
+- rapid MVP delivery with room for backend integration.
 
-Arquivos de apoio:
+Supporting copy files:
 
-- `DESCRICAO_PORTFOLIO.md`: texto para GitHub e LinkedIn (EN primeiro, PT-BR depois);
-- `DESCRICAO_UPWORK.md`: texto para proposta comercial no Upwork (EN primeiro, PT-BR depois).
+- `PORTFOLIO_POSITIONING.md` for GitHub, LinkedIn, and interview context;
+- `UPWORK_PROPOSAL_GUIDE.md` for client proposals and pitch templates.
 
-## Evolucoes sugeridas (nivel producao)
+## Recommended production upgrades
 
-- Integracao com API REST para persistencia real;
-- Banco de dados relacional;
-- Controle de usuarios e niveis de acesso;
-- Edicao e exclusao de clientes;
-- Dashboard com indicadores de funil e vendas.
+- API-backed persistence (REST or GraphQL);
+- relational database integration;
+- role-based access control;
+- record editing and deletion flows;
+- sales metrics dashboard and funnel analytics.

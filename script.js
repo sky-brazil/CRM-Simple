@@ -1,41 +1,55 @@
-const LOGIN_KEY = "logged";
-const CLIENTES_KEY = "clientes";
-const isCrmPage = window.location.pathname.includes("crm.html");
+const AUTH_KEY = "logged";
+const CLIENTS_KEY = "clients";
+const isDashboardPage = window.location.pathname.includes("crm.html");
 const isLoginPage =
   window.location.pathname.endsWith("index.html") ||
   window.location.pathname === "/" ||
   window.location.pathname === "";
 
-function getClientes() {
+function createClientId(index) {
+  if (typeof crypto !== "undefined" && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+  return `${Date.now()}-${index}`;
+}
+
+function normalizeClientRecord(client, index) {
+  const createdAt = Number(client.createdAt);
+  return {
+    id: client.id || createClientId(index),
+    fullName: String(client.fullName || "").trim(),
+    documentId: String(client.documentId || "").trim(),
+    phone: String(client.phone || "").trim(),
+    email: String(client.email || "").trim(),
+    profession: String(client.profession || "").trim(),
+    postalCode: String(client.postalCode || "").trim(),
+    city: String(client.city || "").trim(),
+    interestedProduct: String(client.interestedProduct || "").trim(),
+    customerProfile: String(client.customerProfile || "").trim(),
+    interactionNotes: String(client.interactionNotes || "").trim(),
+    createdAt: Number.isFinite(createdAt) && createdAt > 0 ? createdAt : Date.now() - index
+  };
+}
+
+function getClients() {
   try {
-    const raw = localStorage.getItem(CLIENTES_KEY);
+    const raw = localStorage.getItem(CLIENTS_KEY);
     if (!raw) return [];
+
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
 
     let changed = false;
-    const normalized = parsed.map((cliente, index) => {
-      const next = { ...cliente };
-
-      if (!next.id) {
-        next.id =
-          typeof crypto !== "undefined" && crypto.randomUUID
-            ? crypto.randomUUID()
-            : `${Date.now()}-${index}`;
+    const normalized = parsed.map((client, index) => {
+      const next = normalizeClientRecord(client, index);
+      if (JSON.stringify(next) !== JSON.stringify(client)) {
         changed = true;
       }
-
-      if (!next.createdAt) {
-        const parsedDate = next.data ? Date.parse(next.data) : NaN;
-        next.createdAt = Number.isNaN(parsedDate) ? Date.now() - index : parsedDate;
-        changed = true;
-      }
-
       return next;
     });
 
     if (changed) {
-      saveClientes(normalized);
+      saveClients(normalized);
     }
 
     return normalized;
@@ -44,199 +58,206 @@ function getClientes() {
   }
 }
 
-function saveClientes(clientes) {
-  localStorage.setItem(CLIENTES_KEY, JSON.stringify(clientes));
+function saveClients(clients) {
+  localStorage.setItem(CLIENTS_KEY, JSON.stringify(clients));
 }
 
 function ensureStorage() {
-  if (!localStorage.getItem(CLIENTES_KEY)) {
-    saveClientes([]);
+  if (!localStorage.getItem(CLIENTS_KEY)) {
+    saveClients([]);
   }
 }
 
-// Protecao da pagina principal
-if (isCrmPage) {
-  if (localStorage.getItem(LOGIN_KEY) !== "true") {
+if (isDashboardPage) {
+  if (localStorage.getItem(AUTH_KEY) !== "true") {
     window.location.href = "index.html";
   } else {
     ensureStorage();
   }
 }
 
-if (isLoginPage && localStorage.getItem(LOGIN_KEY) === "true") {
+if (isLoginPage && localStorage.getItem(AUTH_KEY) === "true") {
   window.location.href = "crm.html";
 }
 
 function showFeedback(message) {
-  const feedback = document.getElementById("feedback");
-  if (!feedback) return;
-  feedback.textContent = message;
+  const feedbackElement = document.getElementById("feedbackMessage");
+  if (!feedbackElement) return;
+  feedbackElement.textContent = message;
 }
 
-function updateResultadosInfo(total) {
-  const info = document.getElementById("resultadosInfo");
-  if (!info) return;
+function updateResultsSummary(total) {
+  const summaryElement = document.getElementById("resultsSummary");
+  if (!summaryElement) return;
 
   if (total === 0) {
-    info.textContent = "Nenhum cliente encontrado.";
+    summaryElement.textContent = "No clients found.";
     return;
   }
 
-  info.textContent = `${total} cliente(s) encontrado(s). Clique em um registro para ver detalhes.`;
+  summaryElement.textContent = `${total} client record(s) found. Click an item to view details.`;
 }
 
-function logout() {
-  localStorage.removeItem(LOGIN_KEY);
+function signOut() {
+  localStorage.removeItem(AUTH_KEY);
   window.location.href = "index.html";
 }
 
-function login() {
-  const userInput = document.getElementById("user");
-  const passInput = document.getElementById("pass");
+function signIn() {
+  const usernameInput = document.getElementById("username");
+  const passwordInput = document.getElementById("password");
 
-  if (!userInput || !passInput) return;
+  if (!usernameInput || !passwordInput) return;
 
-  const user = userInput.value.trim();
-  const pass = passInput.value.trim();
+  const username = usernameInput.value.trim();
+  const password = passwordInput.value.trim();
 
-  if (user === "admin" && pass === "123") {
-    localStorage.setItem(LOGIN_KEY, "true");
+  if (username === "admin" && password === "123") {
+    localStorage.setItem(AUTH_KEY, "true");
     window.location.href = "crm.html";
     return;
   }
 
-  alert("Usuario ou senha incorretos.");
+  alert("Invalid username or password.");
 }
 
-// Função para limpar campos
-function limparCampos(showMessage = true) {
-  const campos = document.querySelectorAll(".cadastro-box input, .cadastro-box textarea");
-  campos.forEach((campo) => {
-    campo.value = "";
+function clearFormFields(showMessage = true) {
+  const fields = document.querySelectorAll(".client-form input, .client-form textarea");
+  fields.forEach((field) => {
+    field.value = "";
   });
+
   if (showMessage) {
-    showFeedback("Campos limpos.");
+    showFeedback("Form fields cleared.");
   }
 }
 
-// Função salvar
-function salvar() {
+function saveClient() {
   ensureStorage();
 
-  const nome = document.getElementById("nome")?.value.trim() || "";
-  const documento = document.getElementById("documento")?.value.trim() || "";
-  const telefone = document.getElementById("telefone")?.value.trim() || "";
+  const fullName = document.getElementById("fullName")?.value.trim() || "";
+  const documentId = document.getElementById("documentId")?.value.trim() || "";
+  const phone = document.getElementById("phone")?.value.trim() || "";
   const email = document.getElementById("email")?.value.trim() || "";
-  const profissao = document.getElementById("profissao")?.value.trim() || "";
-  const cep = document.getElementById("cep")?.value.trim() || "";
-  const cidade = document.getElementById("cidade")?.value.trim() || "";
-  const produto = document.getElementById("produto")?.value.trim() || "";
-  const perfil = document.getElementById("perfil")?.value.trim() || "";
-  const interacao = document.getElementById("interacao")?.value.trim() || "";
+  const profession = document.getElementById("profession")?.value.trim() || "";
+  const postalCode = document.getElementById("postalCode")?.value.trim() || "";
+  const city = document.getElementById("city")?.value.trim() || "";
+  const interestedProduct = document.getElementById("interestedProduct")?.value.trim() || "";
+  const customerProfile = document.getElementById("customerProfile")?.value.trim() || "";
+  const interactionNotes = document.getElementById("interactionNotes")?.value.trim() || "";
 
-  if (!nome || !telefone) {
-    showFeedback("Preencha pelo menos Nome e Telefone antes de salvar.");
+  if (!fullName || !phone) {
+    showFeedback("Please fill in at least Full Name and Phone before saving.");
     return;
   }
 
-  const cliente = {
-    id: typeof crypto !== "undefined" && crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(),
-    nome,
-    documento,
-    telefone,
+  const client = {
+    id: createClientId(0),
+    fullName,
+    documentId,
+    phone,
     email,
-    profissao,
-    cep,
-    cidade,
-    produto,
-    perfil,
-    interacao,
-    createdAt: Date.now(),
-    data: new Date().toLocaleString("pt-BR")
+    profession,
+    postalCode,
+    city,
+    interestedProduct,
+    customerProfile,
+    interactionNotes,
+    createdAt: Date.now()
   };
 
-  const lista = getClientes();
-  lista.push(cliente);
-  saveClientes(lista);
+  const clients = getClients();
+  clients.push(client);
+  saveClients(clients);
 
-  limparCampos(false);
-  showFeedback("Cliente salvo com sucesso.");
-  buscar();
+  clearFormFields(false);
+  showFeedback("Client saved successfully.");
+  filterClients();
 }
 
-function renderResultados(clientes) {
-  const ul = document.getElementById("resultados");
-  if (!ul) return;
+function renderResults(clients) {
+  const listElement = document.getElementById("results");
+  if (!listElement) return;
 
-  ul.innerHTML = "";
-  updateResultadosInfo(clientes.length);
+  listElement.innerHTML = "";
+  updateResultsSummary(clients.length);
 
-  clientes.forEach((cliente) => {
-    const li = document.createElement("li");
-    li.textContent = `${cliente.nome} - ${cliente.telefone || "Sem telefone"}`;
-    li.addEventListener("click", () => mostrarDetalhes(cliente.id));
-    ul.appendChild(li);
+  clients.forEach((client) => {
+    const item = document.createElement("li");
+    item.textContent = `${client.fullName} - ${client.phone || "No phone number"}`;
+    item.addEventListener("click", () => showClientDetails(client.id));
+    listElement.appendChild(item);
   });
 }
 
-// Função buscar
-function buscar() {
-  const searchInput = document.getElementById("search");
+function filterClients() {
+  const searchInput = document.getElementById("searchInput");
   if (!searchInput) return;
 
-  const termo = searchInput.value.trim().toLowerCase();
-  const lista = getClientes();
+  const searchTerm = searchInput.value.trim().toLowerCase();
+  const clients = getClients();
 
-  const filtrados = lista
-    .filter((c) => {
-      const campos = [c.nome, c.documento, c.telefone, c.email, c.profissao]
+  const filtered = clients
+    .filter((client) => {
+      const searchableFields = [
+        client.fullName,
+        client.documentId,
+        client.phone,
+        client.email,
+        client.profession
+      ]
         .filter(Boolean)
-        .map((item) => item.toLowerCase());
-      return campos.some((item) => item.includes(termo));
+        .map((value) => value.toLowerCase());
+
+      return searchableFields.some((value) => value.includes(searchTerm));
     })
     .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
 
-  renderResultados(filtrados);
+  renderResults(filtered);
 }
 
-// Mostrar detalhes
-function mostrarDetalhes(clienteId) {
-  const lista = getClientes();
-  const cliente = lista.find((item) => item.id === clienteId);
-  if (!cliente) {
-    alert("Cliente nao encontrado.");
+function formatTimestamp(timestamp) {
+  if (!timestamp) return "-";
+  return new Date(timestamp).toLocaleString("en-US");
+}
+
+function showClientDetails(clientId) {
+  const clients = getClients();
+  const client = clients.find((item) => item.id === clientId);
+  if (!client) {
+    alert("Client not found.");
     return;
   }
 
-  const detalhes = [
-    `Nome: ${cliente.nome || "-"}`,
-    `Documento: ${cliente.documento || "-"}`,
-    `Telefone: ${cliente.telefone || "-"}`,
-    `Email: ${cliente.email || "-"}`,
-    `Profissao: ${cliente.profissao || "-"}`,
+  const details = [
+    `Full Name: ${client.fullName || "-"}`,
+    `Document ID: ${client.documentId || "-"}`,
+    `Phone: ${client.phone || "-"}`,
+    `Email: ${client.email || "-"}`,
+    `Profession: ${client.profession || "-"}`,
     "",
-    `CEP: ${cliente.cep || "-"}`,
-    `Cidade: ${cliente.cidade || "-"}`,
+    `Postal Code: ${client.postalCode || "-"}`,
+    `City: ${client.city || "-"}`,
     "",
-    `Produto: ${cliente.produto || "-"}`,
-    `Perfil: ${cliente.perfil || "-"}`,
-    `Interacao: ${cliente.interacao || "-"}`,
-    `Data: ${cliente.data || "-"}`
+    `Interested Product: ${client.interestedProduct || "-"}`,
+    `Customer Profile: ${client.customerProfile || "-"}`,
+    `Interaction Notes: ${client.interactionNotes || "-"}`,
+    `Created At: ${formatTimestamp(client.createdAt)}`
   ].join("\n");
 
-  alert(detalhes);
+  alert(details);
 }
 
-if (isCrmPage) {
-  buscar();
+if (isDashboardPage) {
+  filterClients();
 }
 
 if (isLoginPage) {
-  const passInput = document.getElementById("pass");
-  if (passInput) {
-    passInput.addEventListener("keydown", (event) => {
+  const passwordInput = document.getElementById("password");
+  if (passwordInput) {
+    passwordInput.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
-        login();
+        signIn();
       }
     });
   }

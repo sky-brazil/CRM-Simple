@@ -1,96 +1,98 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Painel de CRM comercial com cadastro de clientes, busca multi-campo e historico de interacoes.">
-  <title>Mini CRM Comercial</title>
+  <meta
+    name="description"
+    content="Commercial CRM dashboard demo with client onboarding, multi-field search, and interaction tracking."
+  >
+  <title>Commercial Mini CRM | Dashboard</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
     <div>
-      <h1>Mini CRM Comercial</h1>
-      <p class="header-subtitle">Cadastro e relacionamento com clientes em uma interface limpa.</p>
+      <h1>Commercial Mini CRM</h1>
+      <p class="header-subtitle">Client onboarding and relationship tracking in a clean interface.</p>
     </div>
-    <button class="btn-secondary" type="button" onclick="logout()">Sair</button>
+    <button class="btn-secondary" type="button" onclick="signOut()">Sign Out</button>
   </header>
 
-  <!-- FORMULÁRIO DE NOVO CLIENTE -->
-<section class="cadastro-box">
-  <h2>Cadastro de Cliente</h2>
+  <section class="client-form">
+    <h2>Client Registration</h2>
 
-  <div class="campo">
-    <label for="nome">Nome completo</label>
-    <input id="nome" placeholder="Nome">
-  </div>
-
-  <div class="linha">
-    <div class="campo">
-      <label for="documento">Documento</label>
-      <input id="documento" placeholder="Documento">
+    <div class="form-field">
+      <label for="fullName">Full Name</label>
+      <input id="fullName" placeholder="Full name">
     </div>
-    <div class="campo">
-      <label for="telefone">Telefone</label>
-      <input id="telefone" placeholder="Telefone">
-    </div>
-  </div>
 
-  <div class="linha">
-    <div class="campo">
-      <label for="email">E-mail</label>
-      <input id="email" placeholder="Email">
+    <div class="form-row">
+      <div class="form-field">
+        <label for="documentId">Document ID</label>
+        <input id="documentId" placeholder="Document ID">
+      </div>
+      <div class="form-field">
+        <label for="phone">Phone</label>
+        <input id="phone" placeholder="Phone number">
+      </div>
     </div>
-    <div class="campo">
-      <label for="profissao">Profissão</label>
-      <input id="profissao" placeholder="Profissão">
+
+    <div class="form-row">
+      <div class="form-field">
+        <label for="email">Email</label>
+        <input id="email" placeholder="Email address">
+      </div>
+      <div class="form-field">
+        <label for="profession">Profession</label>
+        <input id="profession" placeholder="Profession">
+      </div>
     </div>
-  </div>
 
-  <div class="linha">
-    <div class="campo">
-      <label for="cep">CEP</label>
-      <input id="cep" placeholder="CEP">
+    <div class="form-row">
+      <div class="form-field">
+        <label for="postalCode">Postal Code</label>
+        <input id="postalCode" placeholder="Postal code">
+      </div>
+      <div class="form-field">
+        <label for="city">City</label>
+        <input id="city" placeholder="City">
+      </div>
     </div>
-    <div class="campo">
-      <label for="cidade">Cidade</label>
-      <input id="cidade" placeholder="Cidade">
+
+    <h2>Profile and Engagement</h2>
+
+    <div class="form-row">
+      <div class="form-field">
+        <label for="interestedProduct">Interested Product</label>
+        <input id="interestedProduct" placeholder="Product or service">
+      </div>
+      <div class="form-field">
+        <label for="customerProfile">Customer Profile</label>
+        <input id="customerProfile" placeholder="Profile segment">
+      </div>
     </div>
-  </div>
 
-  <h2>Fidelização e Perfil</h2>
-
-  <div class="linha">
-    <div class="campo">
-      <label for="produto">Produto de interesse</label>
-      <input id="produto" placeholder="Produto">
+    <div class="form-field">
+      <label for="interactionNotes">Interaction Notes</label>
+      <textarea id="interactionNotes" placeholder="Detailed interaction notes"></textarea>
     </div>
-    <div class="campo">
-      <label for="perfil">Perfil</label>
-      <input id="perfil" placeholder="Perfil">
+
+    <div class="actions">
+      <button class="btn-primary" type="button" onclick="saveClient()">Save Client</button>
+      <button class="btn-secondary" type="button" onclick="clearFormFields()">Clear Form</button>
     </div>
-  </div>
+    <p id="feedbackMessage" class="feedback" aria-live="polite"></p>
+  </section>
 
-  <div class="campo">
-    <label for="interacao">Interação detalhada</label>
-    <textarea id="interacao" placeholder="Interação (detalhada)"></textarea>
-  </div>
-
-  <div class="actions">
-    <button class="btn-primary" type="button" onclick="salvar()">Salvar Cliente</button>
-    <button class="btn-secondary" type="button" onclick="limparCampos()">Limpar Campos</button>
-  </div>
-  <p id="feedback" class="feedback" aria-live="polite"></p>
-</section>
-
-<section>
-  <h2>Buscar Cliente</h2>
-  <label for="search">Buscar por nome, telefone, e-mail ou documento</label>
-  <input id="search" placeholder="Nome, telefone, e-mail ou documento" onkeyup="buscar()">
-  <p id="resultadosInfo" class="muted"></p>
-  <ul id="resultados" class="resultados-lista"></ul>
-</section>
+  <section>
+    <h2>Client Search</h2>
+    <label for="searchInput">Search by name, phone, email, document, or profession</label>
+    <input id="searchInput" placeholder="Name, phone, email, document, or profession" onkeyup="filterClients()">
+    <p id="resultsSummary" class="muted"></p>
+    <ul id="results" class="results-list"></ul>
+  </section>
 
   <script src="script.js"></script>
 </body>

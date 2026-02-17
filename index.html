@@ -1,26 +1,29 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Mini CRM Comercial para demonstracao de portfolio com login, cadastro de clientes e busca inteligente.">
-  <title>Mini CRM Comercial | Login</title>
+  <meta
+    name="description"
+    content="Commercial mini CRM demo for portfolio and Upwork positioning, featuring authentication, client records, and smart search."
+  >
+  <title>Commercial Mini CRM | Login</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="login-bg">
 
   <div class="login-box">
-    <h1>Mini CRM Comercial</h1>
-    <p class="subtitle">Demonstração de CRM leve para gestão de relacionamento com clientes.</p>
+    <h1>Commercial Mini CRM</h1>
+    <p class="subtitle">Lightweight CRM demo focused on client lifecycle visibility and usability.</p>
 
-    <label for="user">Usuário</label>
-    <input id="user" placeholder="Informe seu usuário" autocomplete="username">
+    <label for="username">Username</label>
+    <input id="username" placeholder="Enter your username" autocomplete="username">
 
-    <label for="pass">Senha</label>
-    <input id="pass" type="password" placeholder="Informe sua senha" autocomplete="current-password">
+    <label for="password">Password</label>
+    <input id="password" type="password" placeholder="Enter your password" autocomplete="current-password">
 
-    <button class="btn-primary" type="button" onclick="login()">Entrar no CRM</button>
-    <p class="helper">Acesso de demonstração: <strong>admin</strong> / <strong>123</strong></p>
+    <button class="btn-primary" type="button" onclick="signIn()">Access CRM Dashboard</button>
+    <p class="helper">Demo access: <strong>admin</strong> / <strong>123</strong></p>
   </div>
 
   <script src="script.js"></script>

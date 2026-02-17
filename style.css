@@ -125,7 +125,7 @@ button:active {
 
 .login-bg {
   min-height: 100vh;
-  background-image: linear-gradient(rgba(18, 32, 58, 0.55), rgba(18, 32, 58, 0.55)), url("img/onda-azul.jpg");
+  background-image: linear-gradient(rgba(18, 32, 58, 0.55), rgba(18, 32, 58, 0.55)), url("img/blue-wave.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -158,29 +158,29 @@ button:active {
   font-size: 14px;
 }
 
-.cadastro-box {
-  background-image: linear-gradient(rgba(37, 99, 235, 0.68), rgba(30, 64, 175, 0.72)), url("img/onda-azul.jpg");
+.client-form {
+  background-image: linear-gradient(rgba(37, 99, 235, 0.68), rgba(30, 64, 175, 0.72)), url("img/blue-wave.jpg");
   background-size: cover;
   background-position: center;
   border: none;
 }
 
-.cadastro-box h2,
-.cadastro-box label {
+.client-form h2,
+.client-form label {
   color: #ffffff;
 }
 
-.cadastro-box input,
-.cadastro-box textarea {
+.client-form input,
+.client-form textarea {
   background: rgba(255, 255, 255, 0.94);
   border-color: rgba(255, 255, 255, 0.7);
 }
 
-.campo {
+.form-field {
   margin-bottom: 12px;
 }
 
-.linha {
+.form-row {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
@@ -213,13 +213,13 @@ button:active {
   display: none;
 }
 
-#resultados {
+#results {
   list-style: none;
   margin: 8px 0 0;
   padding: 0;
 }
 
-#resultados li {
+#results li {
   border: 1px solid var(--border);
   border-radius: 10px;
   background: #ffffff;
@@ -229,7 +229,7 @@ button:active {
   transition: border-color 0.2s, background-color 0.2s;
 }
 
-#resultados li:hover {
+#results li:hover {
   background: #f0f9ff;
   border-color: #93c5fd;
 }
@@ -245,7 +245,7 @@ button:active {
     padding: 22px;
   }
 
-  .linha {
+  .form-row {
     grid-template-columns: 1fr;
     gap: 8px;
   }
