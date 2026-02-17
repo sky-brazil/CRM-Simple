@@ -1,4 +1,4 @@
-# Descricao para portfolio (GitHub / LinkedIn)
+# Descricao para portfolio (GitHub / LinkedIn) + uso comercial
 
 ## Versao curta (PT-BR)
 
@@ -23,3 +23,12 @@ Este projeto pode ser exibido como exemplo de:
 - prototipo funcional de sistema comercial;
 - organizacao de front-end para MVP;
 - base para evolucao de CRM com API e banco de dados.
+
+## Posicionamento comercial complementar
+
+Mesmo sendo um projeto de portfolio, ele tambem pode ser citado em conversas comerciais
+como prova de capacidade para:
+
+- desenvolver CRM customizado;
+- organizar fluxo de cadastro e relacionamento;
+- entregar MVP funcional com foco em resultado de negocio.
