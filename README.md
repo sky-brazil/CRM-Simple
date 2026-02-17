@@ -78,8 +78,8 @@ Este projeto pode ser apresentado como exemplo para servicos de:
 
 Arquivos de apoio:
 
-- `DESCRICAO_PORTFOLIO.md`: texto para GitHub e LinkedIn;
-- `DESCRICAO_UPWORK.md`: texto pronto para proposta comercial no Upwork.
+- `DESCRICAO_PORTFOLIO.md`: texto para GitHub e LinkedIn (EN primeiro, PT-BR depois);
+- `DESCRICAO_UPWORK.md`: texto para proposta comercial no Upwork (EN primeiro, PT-BR depois).
 
 ## Evolucoes sugeridas (nivel producao)
 
