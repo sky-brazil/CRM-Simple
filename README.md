@@ -1,40 +1,40 @@
-# Mini CRM Comercial (Portfolio para Upwork)
+# Mini CRM Comercial (Projeto de Portfolio)
 
-Projeto front-end de **CRM leve** para cadastro, consulta e acompanhamento de clientes, com foco em demonstracao profissional para portfolio e propostas na Upwork.
+Projeto front-end de **CRM leve** para cadastro, consulta e acompanhamento de clientes, com foco em apresentar um portfolio profissional de desenvolvimento web.
 
-## Objetivo comercial
+## Objetivo do projeto
 
-Este projeto foi estruturado para mostrar, de forma direta, capacidade de entregar:
+Este projeto foi estruturado para demonstrar:
 
-- interface limpa e responsiva;
-- fluxo de autenticacao simples;
-- CRUD basico orientado a negocio (cadastro + busca + detalhes);
-- organizacao de codigo clara para evolucao rapida.
+- interface limpa, moderna e responsiva;
+- fluxo de autenticacao simples para demonstracao;
+- logica de cadastro, busca e consulta de clientes;
+- organizacao de codigo clara para manutencao e evolucao.
 
-## O que o sistema faz
+## Funcionalidades
 
-- Login de demonstracao (controle de sessao no `localStorage`);
+- Login de demonstracao com controle de sessao (`localStorage`);
 - Cadastro de clientes com dados de contato e perfil;
 - Registro de interacoes comerciais;
-- Busca inteligente por nome, telefone, e-mail, documento e profissao;
-- Lista de resultados com abertura de detalhes;
-- Feedback visual de acoes (salvar/limpar).
+- Busca por nome, telefone, e-mail, documento e profissao;
+- Lista de resultados com visualizacao de detalhes;
+- Feedback visual para acoes de salvar e limpar.
 
-## Melhorias aplicadas nesta versao
+## Melhorias aplicadas
 
-- Correcao de imagem de fundo quebrada;
-- Correcao de bug na abertura de detalhes apos busca filtrada;
+- Correcao de imagem de fundo com caminho adequado;
+- Correcao do bug de detalhes apos busca filtrada;
 - Inclusao do campo `documento` no salvamento;
 - Validacao minima de campos obrigatorios (nome e telefone);
-- Melhorias de UX/UI para visual mais profissional;
-- Padronizacao de estrutura para facilitar manutencao.
+- Refinamento de UX/UI para aspecto mais profissional;
+- Estrutura JavaScript mais robusta e legivel.
 
 ## Stack
 
 - HTML5
 - CSS3
-- JavaScript puro (Vanilla JS)
-- Persistencia local via `localStorage`
+- JavaScript (Vanilla JS)
+- Persistencia local com `localStorage`
 
 ## Como executar localmente
 
@@ -43,30 +43,30 @@ Este projeto foi estruturado para mostrar, de forma direta, capacidade de entreg
    git clone <repo-url>
    ```
 2. Abra a pasta no VS Code.
-3. Inicie com Live Server (ou abra `index.html` no navegador).
-4. Acesse:
-   - `index.html` para login
-   - `crm.html` para o painel
+3. Execute com Live Server (ou abra `index.html` no navegador).
+4. Navegue por:
+   - `index.html` (login)
+   - `crm.html` (painel)
 
 ## Credenciais de demonstracao
 
 - Usuario: `admin`
 - Senha: `123`
 
-> Nota: autenticacao atual e apenas para demo. Em producao, recomenda-se backend com JWT/sessao segura.
+> Nota: a autenticacao atual e apenas para fins de demonstracao de portfolio.
 
-## Proximos passos (nivel producao)
+## Evolucoes sugeridas
 
-- API REST (Node.js, Python, etc.) para persistencia real;
+- Integracao com API REST para persistencia real;
 - Banco de dados relacional;
-- Autenticacao segura e controle de perfil de usuario;
-- Edicao/exclusao de clientes;
-- Dashboard com metricas de vendas e funil.
+- Controle de usuarios e niveis de acesso;
+- Edicao e exclusao de clientes;
+- Dashboard com indicadores de funil e vendas.
 
-## Pronto para uso em propostas Upwork
+## Uso no portfolio
 
-Este repositorio pode ser apresentado como base para servicos de:
+Este repositorio e indicado para:
 
-- criacao de CRM personalizado para pequenos negocios;
-- modernizacao de sistemas internos simples;
-- desenvolvimento rapido de MVP comercial.
+- demonstrar dominio de front-end sem frameworks;
+- evidenciar capacidade de transformar requisitos de negocio em interface;
+- apresentar base para evolucao de um CRM completo.
